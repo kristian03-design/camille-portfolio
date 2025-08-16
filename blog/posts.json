@@ -1,0 +1,46 @@
+[
+  {
+    "slug": "hello-world",
+    "title": "Hello, World",
+    "excerpt": "Kicking off this space with a short hello and goals.",
+    "tags": ["intro"],
+    "date": "2025-08-12"
+  },
+  {
+    "slug": "it-journey",
+    "title": "My IT Journey",
+    "excerpt": "From classes to projects: what I learned and what's next.",
+    "tags": ["learning", "career"],
+    "date": "2025-08-12"
+  },
+  {
+    "slug": "coding-challenges",
+    "title": "Tackling Coding Challenges",
+    "excerpt": "My approach to solving coding problems and improving skills.",
+    "tags": ["coding", "challenges"],
+    "date": "2025-08-12"
+  },
+  {
+    "slug": "web-dev-basics",
+    "title": "Web Development Basics",
+    "excerpt": "Understanding HTML, CSS, and JavaScript fundamentals.",
+    "tags": ["web", "development"],
+    "date": "2025-08-12"
+  },
+  {
+    "slug": "first-project",
+    "title": "Building My First Project",
+    "excerpt": "A step-by-step guide to creating a simple web app.",
+    "tags": ["project", "web"],
+    "date": "2025-08-12"
+  },
+  {
+    "slug": "next-steps",
+    "title": "Next Steps in My Learning",
+    "excerpt": "Planning my path forward in web development and IT.",
+    "tags": ["planning", "future"],
+    "date": "2025-08-12"
+  }
+]
+
+

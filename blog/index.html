@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog — Camille Santiago</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              accent: {
+                50: '#fff1f4',
+                100: '#ffe4ea',
+                200: '#ffc8d4',
+                300: '#ff9fb6',
+                400: '#ff6b93',
+                500: '#f5578a',
+                600: '#df3e77',
+                700: '#ba2a62',
+                800: '#972553',
+                900: '#7d2248',
+              },
+            },
+            fontFamily: {
+              sans: ['Inter','ui-sans-serif','system-ui','Segoe UI','Roboto','Helvetica Neue','Arial','Noto Sans','sans-serif']
+            },
+            boxShadow: { soft: '0 6px 24px rgba(0,0,0,0.08)' },
+            animation: {
+              'fade-in': 'fadeIn 0.8s ease-out forwards',
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'fade-in-left': 'fadeInLeft 0.8s ease-out forwards',
+              'fade-in-right': 'fadeInRight 0.8s ease-out forwards',
+              'slide-in-up': 'slideInUp 0.6s ease-out forwards',
+              'scale-in': 'scaleIn 0.6s ease-out forwards',
+              'bounce-in': 'bounceIn 0.8s ease-out forwards',
+              'float': 'float 3s ease-in-out infinite',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' }
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              fadeInLeft: {
+                '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' }
+              },
+              fadeInRight: {
+                '0%': { opacity: '0', transform: 'translateX(30px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' }
+              },
+              slideInUp: {
+                '0%': { opacity: '0', transform: 'translateY(50px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              scaleIn: {
+                '0%': { opacity: '0', transform: 'scale(0.9)' },
+                '100%': { opacity: '1', transform: 'scale(1)' }
+              },
+              bounceIn: {
+                '0%': { opacity: '0', transform: 'scale(0.3)' },
+                '50%': { opacity: '1', transform: 'scale(1.05)' },
+                '70%': { transform: 'scale(0.9)' },
+                '100%': { opacity: '1', transform: 'scale(1)' }
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-10px)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+    <style>
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+      
+      .animate-on-scroll.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .blog-post-card {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.6s ease-out;
+      }
+      
+      .blog-post-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .blog-tag {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease-out;
+      }
+      
+      .blog-tag.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .nav-link {
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #f5578a, #df3e77);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+      
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      
+      .hero-gradient {
+        background: linear-gradient(135deg, rgba(245, 87, 138, 0.1) 0%, rgba(223, 62, 119, 0.05) 100%);
+        animation: gradientShift 8s ease-in-out infinite;
+      }
+      
+      @keyframes gradientShift {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; }
+      }
+      
+      .post-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .post-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(245, 87, 138, 0.05), transparent);
+        transition: left 0.6s ease;
+      }
+      
+      .post-card:hover::before {
+        left: 100%;
+      }
+      
+      .post-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: #f5578a;
+      }
+      
+      .post-title {
+        transition: all 0.3s ease;
+      }
+      
+      .post-card:hover .post-title {
+        color: #f5578a;
+      }
+      
+      .post-excerpt {
+        transition: all 0.3s ease;
+      }
+      
+      .post-card:hover .post-excerpt {
+        color: #374151;
+      }
+      
+      .dark .post-card:hover .post-excerpt {
+        color: #d1d5db;
+      }
+      
+      .post-date {
+        transition: all 0.3s ease;
+      }
+      
+      .post-card:hover .post-date {
+        color: #f5578a;
+      }
+      
+      .blog-content {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+      
+      .blog-content.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .loading-spinner {
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      
+      .floating-shapes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+      }
+      
+      .floating-shape {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      .floating-shape:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      
+      .floating-shape:nth-child(2) {
+        top: 60%;
+        right: 10%;
+        animation-delay: 2s;
+      }
+      
+      .floating-shape:nth-child(3) {
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 4s;
+      }
+      
+      /* Enhanced blog content styling */
+      .prose-content {
+        line-height: 1.7;
+        color: #374151;
+      }
+      
+      .dark .prose-content {
+        color: #d1d5db;
+      }
+      
+      .prose-content h1,
+      .prose-content h2,
+      .prose-content h3,
+      .prose-content h4,
+      .prose-content h5,
+      .prose-content h6 {
+        color: #1f2937;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        transition: color 0.3s ease;
+      }
+      
+      .dark .prose-content h1,
+      .dark .prose-content h2,
+      .dark .prose-content h3,
+      .dark .prose-content h4,
+      .dark .prose-content h5,
+      .dark .prose-content h6 {
+        color: #f9fafb;
+      }
+      
+      .prose-content h1 {
+        font-size: 2.25rem;
+        border-bottom: 2px solid #f5578a;
+        padding-bottom: 0.5rem;
+      }
+      
+      .prose-content h2 {
+        font-size: 1.875rem;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.25rem;
+      }
+      
+      .dark .prose-content h2 {
+        border-bottom-color: #374151;
+      }
+      
+      .prose-content h3 {
+        font-size: 1.5rem;
+      }
+      
+      .prose-content p {
+        margin-bottom: 1.25rem;
+        text-align: justify;
+      }
+      
+      .prose-content ul,
+      .prose-content ol {
+        margin-bottom: 1.25rem;
+        padding-left: 1.5rem;
+      }
+      
+      .prose-content li {
+        margin-bottom: 0.5rem;
+      }
+      
+      .prose-content blockquote {
+        border-left: 4px solid #f5578a;
+        padding-left: 1rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        background: rgba(245, 87, 138, 0.05);
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
+      
+      .dark .prose-content blockquote {
+        background: rgba(245, 87, 138, 0.1);
+      }
+      
+      .prose-content code {
+        background: #f3f4f6;
+        padding: 0.125rem 0.25rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+        color: #dc2626;
+        font-weight: 500;
+      }
+      
+      .dark .prose-content code {
+        background: #374151;
+        color: #fca5a5;
+      }
+      
+      .prose-content pre {
+        background: #1f2937;
+        color: #f9fafb;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        border: 1px solid #374151;
+      }
+      
+      .dark .prose-content pre {
+        background: #111827;
+        border-color: #4b5563;
+      }
+      
+      .prose-content pre code {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+        font-size: 0.875rem;
+      }
+      
+      .prose-content a {
+        color: #f5578a;
+        text-decoration: underline;
+        text-decoration-color: rgba(245, 87, 138, 0.3);
+        transition: all 0.3s ease;
+      }
+      
+      .prose-content a:hover {
+        color: #df3e77;
+        text-decoration-color: rgba(223, 62, 119, 0.6);
+      }
+      
+      .prose-content img {
+        border-radius: 0.5rem;
+        margin: 1.5rem 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+      
+      .prose-content img:hover {
+        transform: scale(1.02);
+      }
+      
+      .prose-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      
+      .prose-content th,
+      .prose-content td {
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      
+      .dark .prose-content th,
+      .dark .prose-content td {
+        border-bottom-color: #374151;
+      }
+      
+      .prose-content th {
+        background: #f9fafb;
+        font-weight: 600;
+        color: #374151;
+      }
+      
+      .dark .prose-content th {
+        background: #374151;
+        color: #f9fafb;
+      }
+      
+      .prose-content tr:hover {
+        background: rgba(245, 87, 138, 0.05);
+      }
+      
+      .dark .prose-content tr:hover {
+        background: rgba(245, 87, 138, 0.1);
+      }
+      
+      /* Enhanced blog post card interactions */
+      .blog-post-card {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .blog-post-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(245, 87, 138, 0.02) 0%, rgba(223, 62, 119, 0.02) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      
+      .blog-post-card:hover::after {
+        opacity: 1;
+      }
+      
+      .blog-post-card:hover {
+        border-color: #f5578a;
+        box-shadow: 0 20px 40px rgba(245, 87, 138, 0.1);
+      }
+      
+      /* Tag animations */
+      .blog-tag {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .blog-tag::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      .blog-tag:hover::before {
+        left: 100%;
+      }
+      
+      .blog-tag:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(245, 87, 138, 0.3);
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100 selection:bg-accent-200/60 selection:text-slate-900">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white dark:bg-slate-900 px-3 py-2 rounded shadow animate-fade-in">Skip to content</a>
+    <header class="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-slate-950/60 border-b border-slate-200/60 dark:border-slate-800 animate-fade-in">
+      <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+        <a href="../index.html" class="font-semibold tracking-tight hover:text-accent-600 transition-colors duration-300">Camille <span class="text-accent-600">Santiago</span></a>
+        <div class="flex items-center gap-1 sm:gap-2">
+          <div class="hidden sm:flex items-center gap-1 sm:gap-2">
+            <a class="nav-link px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800" href="../about.html">About</a>
+            <a class="nav-link px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800" href="../projects.html">Projects</a>
+            <a class="nav-link px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800" href="../contact.html">Contact</a>
+          </div>
+          <button id="themeToggle" aria-label="Toggle dark mode" class="ml-2 rounded p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300 hover:scale-110">
+            <span id="icon-sun" class="hidden">☀️</span>
+            <span id="icon-moon">🌙</span>
+          </button>
+          <button id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobileMenu" class="sm:hidden ml-1 rounded p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300">
+            <span id="icon-menu">☰</span>
+            <span id="icon-close" class="hidden">✕</span>
+          </button>
+        </div>
+      </nav>
+      <div id="mobileMenu" class="sm:hidden hidden border-t border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-950/90 backdrop-blur animate-fade-in">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col gap-1">
+          <a class="px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300" href="../about.html">About</a>
+          <a class="px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300" href="../projects.html">Projects</a>
+          <a class="px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300" href="../contact.html">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero banner to match index aesthetics -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 -z-10">
+        <div class="absolute -inset-[30%] bg-gradient-to-br from-accent-200/40 to-transparent blur-3xl dark:from-accent-500/15 hero-gradient"></div>
+      </div>
+      <div class="floating-shapes">
+        <div class="floating-shape w-16 h-16 bg-accent-300 rounded-full"></div>
+        <div class="floating-shape w-12 h-12 bg-accent-400 rounded-lg"></div>
+        <div class="floating-shape w-20 h-20 bg-accent-200 rounded-full"></div>
+      </div>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <h1 class="text-4xl sm:text-6xl font-bold tracking-tight leading-tight animate-fade-in-up">Blog</h1>
+        <p class="mt-3 text-lg text-slate-600 dark:text-slate-300 animate-fade-in-up" style="animation-delay: 0.2s;">Notes from learning, building, and reflecting.</p>
+      </div>
+    </section>
+
+    <main id="main" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <!-- Loading state -->
+      <div id="loadingState" class="text-center py-12 animate-fade-in">
+        <div class="loading-spinner w-8 h-8 border-4 border-accent-200 border-t-accent-600 rounded-full mx-auto mb-4"></div>
+        <p class="text-slate-600 dark:text-slate-400">Loading blog posts...</p>
+      </div>
+      
+      <!-- Blog posts list -->
+      <div id="postList" class="mt-8 grid md:grid-cols-2 gap-6 animate-on-scroll" aria-live="polite"></div>
+
+      <!-- Individual blog post view -->
+      <article id="postView" class="blog-content prose dark:prose-invert max-w-none hidden mt-12 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 shadow-soft p-6">
+        <!-- Back to blog button -->
+        <div class="mb-6">
+          <button onclick="showBlogList()" class="inline-flex items-center gap-2 px-4 py-2 text-sm bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-all duration-300 hover:scale-105">
+            ← Back to Blog
+          </button>
+        </div>
+      </article>
+    </main>
+
+    <footer class="border-t border-slate-200 dark:border-slate-800 py-10 text-center text-sm text-slate-500 animate-fade-in">
+      <p>© <span id="year"></span> Camille Santiago. Built with ❤️ by Kristian.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/blog.js"></script>
+    <script>
+      // Enhanced scroll animations for blog page
+      function animateOnScroll() {
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        const blogPostCards = document.querySelectorAll('.blog-post-card');
+        const blogTags = document.querySelectorAll('.blog-tag');
+        const blogContent = document.querySelector('.blog-content');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate');
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        elements.forEach(el => observer.observe(el));
+        
+        // Animate blog post cards with staggered delay
+        setTimeout(() => {
+          blogPostCards.forEach((card, index) => {
+            setTimeout(() => card.classList.add('animate'), index * 150);
+          });
+        }, 500);
+        
+        // Animate blog tags with staggered delay
+        setTimeout(() => {
+          blogTags.forEach((tag, index) => {
+            setTimeout(() => tag.classList.add('animate'), index * 50);
+          });
+        }, 1000);
+        
+        // Animate blog content when it appears
+        if (blogContent && !blogContent.classList.contains('hidden')) {
+          setTimeout(() => {
+            blogContent.classList.add('animate');
+          }, 300);
+        }
+      }
+      
+      // Initialize animations when page loads
+      document.addEventListener('DOMContentLoaded', () => {
+        animateOnScroll();
+      });
+      
+      // Re-run animations on scroll
+      window.addEventListener('scroll', () => {
+        animateOnScroll();
+      });
+      
+      // Function to show blog list (for back button)
+      function showBlogList() {
+        const listEl = document.getElementById('postList');
+        const viewEl = document.getElementById('postView');
+        if (listEl && viewEl) {
+          listEl.classList.remove('hidden');
+          viewEl.classList.add('hidden');
+          history.replaceState({}, '', './');
+          
+          // Re-trigger animations for the list
+          setTimeout(() => {
+            animateOnScroll();
+          }, 100);
+        }
+      }
+      
+      // Enhanced blog post loading with animations
+      const originalRenderList = window.renderList;
+      const originalRenderPost = window.renderPost;
+      
+      if (originalRenderList) {
+        window.renderList = function() {
+          originalRenderList();
+          
+          // Hide loading state and show posts
+          const loadingState = document.getElementById('loadingState');
+          if (loadingState) {
+            loadingState.style.display = 'none';
+          }
+          
+          // Trigger animations after posts are loaded
+          setTimeout(() => {
+            animateOnScroll();
+          }, 100);
+        };
+      }
+      
+      if (originalRenderPost) {
+        window.renderPost = function(slug) {
+          originalRenderPost(slug);
+          
+          // Trigger animations for the blog content
+          setTimeout(() => {
+            animateOnScroll();
+          }, 100);
+        };
+      }
+    </script>
+  </body>
+</html>
+
+

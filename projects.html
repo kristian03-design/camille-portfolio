@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects — Camille Santiago</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              accent: {
+                50: '#fff1f4',
+                100: '#ffe4ea',
+                200: '#ffc8d4',
+                300: '#ff9fb6',
+                400: '#ff6b93',
+                500: '#f5578a',
+                600: '#df3e77',
+                700: '#ba2a62',
+                800: '#972553',
+                900: '#7d2248',
+              },
+            },
+            fontFamily: {
+              sans: ['Inter','ui-sans-serif','system-ui','Segoe UI','Roboto','Helvetica Neue','Arial','Noto Sans','sans-serif']
+            },
+            boxShadow: { soft: '0 6px 24px rgba(0,0,0,0.08)' },
+            animation: {
+              'fade-in': 'fadeIn 0.8s ease-out forwards',
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'fade-in-left': 'fadeInLeft 0.8s ease-out forwards',
+              'fade-in-right': 'fadeInRight 0.8s ease-out forwards',
+              'slide-in-up': 'slideInUp 0.6s ease-out forwards',
+              'scale-in': 'scaleIn 0.6s ease-out forwards',
+              'bounce-in': 'bounceIn 0.8s ease-out forwards',
+              'float': 'float 3s ease-in-out infinite',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' }
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              fadeInLeft: {
+                '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' }
+              },
+              fadeInRight: {
+                '0%': { opacity: '0', transform: 'translateX(30px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' }
+              },
+              slideInUp: {
+                '0%': { opacity: '0', transform: 'translateY(50px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              scaleIn: {
+                '0%': { opacity: '0', transform: 'scale(0.9)' },
+                '100%': { opacity: '1', transform: 'scale(1)' }
+              },
+              bounceIn: {
+                '0%': { opacity: '0', transform: 'scale(0.3)' },
+                '50%': { opacity: '1', transform: 'scale(1.05)' },
+                '70%': { transform: 'scale(0.9)' },
+                '100%': { opacity: '1', transform: 'scale(1)' }
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-10px)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+    <style>
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+      
+      .animate-on-scroll.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .floating-shapes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+      }
+      
+      .floating-shape {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      .floating-shape:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      
+      .floating-shape:nth-child(2) {
+        top: 60%;
+        right: 10%;
+        animation-delay: 2s;
+      }
+      
+      .floating-shape:nth-child(3) {
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 4s;
+      }
+      
+      .project-card {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.6s ease-out;
+      }
+      
+      .project-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .tech-tag {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease-out;
+      }
+      
+      .tech-tag.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .nav-link {
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #f5578a, #df3e77);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+      
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      
+      .hero-gradient {
+        background: linear-gradient(135deg, rgba(245, 87, 138, 0.1) 0%, rgba(223, 62, 119, 0.05) 100%);
+        animation: gradientShift 8s ease-in-out infinite;
+      }
+      
+      @keyframes gradientShift {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; }
+      }
+      
+      .project-item {
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      
+      .project-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+      
+      .project-image {
+        transition: all 0.3s ease;
+      }
+      
+      .project-item:hover .project-image {
+        transform: scale(1.05);
+      }
+      
+      .project-links a {
+        transition: all 0.3s ease;
+      }
+      
+      .project-links a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(245, 87, 138, 0.2);
+      }
+      
+      .loading-spinner {
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100 selection:bg-accent-200/60 selection:text-slate-900" data-protected>
+    <header class="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-slate-950/60 border-b border-slate-200/60 dark:border-slate-800 animate-fade-in">
+      <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+        <a href="index.html" class="font-semibold tracking-tight hover:text-accent-600 transition-colors duration-300">Camille <span class="text-accent-600">Santiago</span></a>
+        <div class="flex items-center gap-1 sm:gap-2">
+          <div class="hidden sm:flex items-center gap-1 sm:gap-2">
+            <a class="nav-link px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800" href="about.html">About</a>
+            <a class="nav-link px-3 py-2 rounded hover:bg-slate-800" href="blog/index.html">Blog</a>
+            <a class="nav-link px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800" href="contact.html">Contact</a>
+          </div>
+          <button id="themeToggle" aria-label="Toggle dark mode" class="ml-2 rounded p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300 hover:scale-110">
+            <span id="icon-sun" class="hidden">☀️</span>
+            <span id="icon-moon">🌙</span>
+          </button>
+          <button id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobileMenu" class="sm:hidden ml-1 rounded p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300">
+            <span id="icon-menu">☰</span>
+            <span id="icon-close" class="hidden">✕</span>
+          </button>
+        </div>
+      </nav>
+      <div id="mobileMenu" class="sm:hidden hidden border-t border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-950/90 backdrop-blur animate-fade-in">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col gap-1">
+          <a class="px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300" href="about.html">About</a>
+          <a class="px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300" href="blog/index.html">Blog</a>
+          <a class="px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300" href="contact.html">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero banner to match index aesthetics -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 -z-10">
+        <div class="absolute -inset-[30%] bg-gradient-to-br from-accent-200/40 to-transparent blur-3xl dark:from-accent-500/15 hero-gradient"></div>
+      </div>
+      <div class="floating-shapes">
+        <div class="floating-shape w-20 h-20 bg-accent-300 rounded-full"></div>
+        <div class="floating-shape w-16 h-16 bg-accent-400 rounded-lg"></div>
+        <div class="floating-shape w-24 h-24 bg-accent-200 rounded-full"></div>
+      </div>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <h1 class="text-4xl sm:text-6xl font-bold tracking-tight leading-tight animate-fade-in-up">Projects</h1>
+        <p class="mt-3 text-lg text-slate-600 dark:text-slate-300 animate-fade-in-up" style="animation-delay: 0.2s;">Selected work with a focus on clarity, accessibility, and reliability.</p>
+      </div>
+    </section>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+
+      <!-- Projects grid (loaded from JSON) -->
+      <section class="mt-10 animate-on-scroll">
+        <div id="projectsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        
+        <!-- Loading state -->
+        <div id="loadingState" class="text-center py-12">
+          <div class="loading-spinner w-8 h-8 border-4 border-accent-200 border-t-accent-600 rounded-full mx-auto mb-4"></div>
+          <p class="text-slate-600 dark:text-slate-400">Loading projects...</p>
+        </div>
+        
+        <!-- Error state -->
+        <div id="errorState" class="hidden text-center py-12">
+          <div class="text-red-500 text-6xl mb-4">⚠️</div>
+          <h3 class="text-lg font-semibold mb-2">Something went wrong</h3>
+          <p class="text-slate-600 dark:text-slate-400 mb-4">Unable to load projects. Please try again later.</p>
+          <button onclick="location.reload()" class="px-4 py-2 bg-accent-600 text-white rounded-lg hover:bg-accent-700 transition-colors duration-300">Retry</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-slate-200 dark:border-slate-800 py-10 text-center text-sm text-slate-500 animate-fade-in">
+      <p>© <span id="year"></span> Camille Santiago. Built with ❤️ by Kristian.</p>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+    <script>
+      // Enhanced scroll animations for projects page
+      function animateOnScroll() {
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        const projectCards = document.querySelectorAll('.project-card');
+        const techTags = document.querySelectorAll('.tech-tag');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate');
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        elements.forEach(el => observer.observe(el));
+        
+        // Animate project cards with staggered delay
+        setTimeout(() => {
+          projectCards.forEach((card, index) => {
+            setTimeout(() => card.classList.add('animate'), index * 150);
+          });
+        }, 500);
+        
+        // Animate tech tags with staggered delay
+        setTimeout(() => {
+          techTags.forEach((tag, index) => {
+            setTimeout(() => tag.classList.add('animate'), index * 50);
+          });
+        }, 1000);
+      }
+      
+      // Initialize animations when page loads
+      document.addEventListener('DOMContentLoaded', () => {
+        animateOnScroll();
+      });
+      
+      // Re-run animations on scroll
+      window.addEventListener('scroll', () => {
+        animateOnScroll();
+      });
+      
+      // Enhanced project loading with animations
+      const originalLoadProjects = window.loadProjects;
+      if (originalLoadProjects) {
+        window.loadProjects = function(projects) {
+          originalLoadProjects(projects);
+          
+          // Trigger animations after projects are loaded
+          setTimeout(() => {
+            animateOnScroll();
+          }, 100);
+        };
+      }
+    </script>
+  </body>
+  </html>
+
+

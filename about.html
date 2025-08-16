@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About — Camille Santiago</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              accent: {
+                50: '#fff1f4',
+                100: '#ffe4ea',
+                200: '#ffc8d4',
+                300: '#ff9fb6',
+                400: '#ff6b93',
+                500: '#f5578a',
+                600: '#df3e77',
+                700: '#ba2a62',
+                800: '#972553',
+                900: '#7d2248',
+              },
+            },
+            fontFamily: {
+              sans: ['Inter','ui-sans-serif','system-ui','Segoe UI','Roboto','Helvetica Neue','Arial','Noto Sans','sans-serif']
+            },
+            boxShadow: { soft: '0 6px 24px rgba(0,0,0,0.08)' },
+            animation: {
+              'fade-in': 'fadeIn 0.8s ease-out forwards',
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'fade-in-left': 'fadeInLeft 0.8s ease-out forwards',
+              'fade-in-right': 'fadeInRight 0.8s ease-out forwards',
+              'slide-in-up': 'slideInUp 0.6s ease-out forwards',
+              'scale-in': 'scaleIn 0.6s ease-out forwards',
+              'bounce-in': 'bounceIn 0.8s ease-out forwards',
+              'float': 'float 3s ease-in-out infinite',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' }
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              fadeInLeft: {
+                '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' }
+              },
+              fadeInRight: {
+                '0%': { opacity: '0', transform: 'translateX(30px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' }
+              },
+              slideInUp: {
+                '0%': { opacity: '0', transform: 'translateY(50px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              scaleIn: {
+                '0%': { opacity: '0', transform: 'scale(0.9)' },
+                '100%': { opacity: '1', transform: 'scale(1)' }
+              },
+              bounceIn: {
+                '0%': { opacity: '0', transform: 'scale(0.3)' },
+                '50%': { opacity: '1', transform: 'scale(1.05)' },
+                '70%': { transform: 'scale(0.9)' },
+                '100%': { opacity: '1', transform: 'scale(1)' }
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-10px)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+      
+      .animate-on-scroll.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .content-card {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.6s ease-out;
+      }
+      
+      .content-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .skill-item {
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.5s ease-out;
+      }
+      
+      .skill-item.animate {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      
+      .nav-link {
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #f5578a, #df3e77);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+      
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      
+      .hero-gradient {
+        background: linear-gradient(135deg, rgba(245, 87, 138, 0.1) 0%, rgba(223, 62, 119, 0.05) 100%);
+        animation: gradientShift 8s ease-in-out infinite;
+      }
+      
+      @keyframes gradientShift {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; }
+      }
+      
+      .content-section {
+        transition: all 0.3s ease;
+      }
+      
+      .content-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      .skill-badge {
+        transition: all 0.3s ease;
+      }
+      
+      .skill-badge:hover {
+        transform: scale(1.05) translateY(-2px);
+        box-shadow: 0 5px 15px rgba(245, 87, 138, 0.2);
+      }
+      
+      .details-summary {
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      
+      .details-summary:hover {
+        color: #f5578a;
+      }
+      
+      .details-content {
+        transition: all 0.3s ease;
+      }
+      
+      .floating-shapes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+      }
+      
+      .floating-shape {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      .floating-shape:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      
+      .floating-shape:nth-child(2) {
+        top: 60%;
+        right: 10%;
+        animation-delay: 2s;
+      }
+      
+      .floating-shape:nth-child(3) {
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 4s;
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100 selection:bg-accent-200/60 selection:text-slate-900">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white dark:bg-slate-900 px-3 py-2 rounded shadow animate-fade-in">Skip to content</a>
+    <header class="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-slate-950/60 border-b border-slate-200/60 dark:border-slate-800 animate-fade-in">
+      <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+        <a href="index.html" class="font-semibold tracking-tight hover:text-accent-600 transition-colors duration-300">Camille <span class="text-accent-600">Santiago</span></a>
+        <div class="flex items-center gap-1 sm:gap-2">
+          <div class="hidden sm:flex items-center gap-1 sm:gap-2">
+            <a class="nav-link px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800" href="projects.html">Projects</a>
+            <a class="nav-link px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800" href="blog/index.html">Blog</a>
+            <a class="nav-link px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800" href="contact.html">Contact</a>
+          </div>
+          <button id="themeToggle" aria-label="Toggle dark mode" class="ml-2 rounded p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300 hover:scale-110">
+            <span id="icon-sun" class="hidden">☀️</span>
+            <span id="icon-moon">🌙</span>
+          </button>
+          <button id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobileMenu" class="sm:hidden ml-1 rounded p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300">
+            <span id="icon-menu">☰</span>
+            <span id="icon-close" class="hidden">✕</span>
+          </button>
+        </div>
+      </nav>
+      <div id="mobileMenu" class="sm:hidden hidden border-t border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-950/90 backdrop-blur animate-fade-in">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col gap-1">
+          <a class="px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300" href="projects.html">Projects</a>
+          <a class="px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300" href="blog/index.html">Blog</a>
+          <a class="px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300" href="contact.html">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero banner to match index aesthetics -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 -z-10">
+        <div class="absolute -inset-[30%] bg-gradient-to-br from-accent-200/40 to-transparent blur-3xl dark:from-accent-500/15 hero-gradient"></div>
+      </div>
+      <div class="floating-shapes">
+        <div class="floating-shape w-16 h-16 bg-accent-300 rounded-full"></div>
+        <div class="floating-shape w-12 h-12 bg-accent-400 rounded-lg"></div>
+        <div class="floating-shape w-20 h-20 bg-accent-200 rounded-full"></div>
+      </div>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <h1 class="text-4xl sm:text-6xl font-bold tracking-tight leading-tight animate-fade-in-up">About Camille</h1>
+        <p class="mt-3 text-lg text-slate-600 dark:text-slate-300 animate-fade-in-up" style="animation-delay: 0.2s;">A blend of frontend craft, DevOps curiosity, and people-first values.</p>
+      </div>
+    </section>
+
+    <main id="main" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="mt-6 grid md:grid-cols-3 gap-10 items-start">
+        <div class="md:col-span-2 space-y-6">
+          <section class="content-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 shadow-soft p-6 content-section">
+            <h2 class="text-xl font-semibold">Professional</h2>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">
+              I'm a Full Stack Developer passionate about building accessible, performant web applications. Currently, I work at Accenture, where I collaborate on projects that blend frontend craft with backend logic.
+            </p>
+          </section>
+          <section class="content-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 shadow-soft p-6 content-section" style="animation-delay: 0.1s;">
+            <h2 class="text-xl font-semibold">Personal</h2>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">In my free time, I enjoy playing online games, cooking, and maintaining the cleanliness of my house.</p>
+          </section>
+          <section class="content-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 shadow-soft p-6 content-section" style="animation-delay: 0.2s;">
+            <h2 class="text-xl font-semibold">Interactive Resume</h2>
+            <div class="mt-3 space-y-3">
+              <details class="group rounded-lg border border-slate-200 dark:border-slate-800 p-4 bg-white/60 dark:bg-slate-900/60 hover:bg-white/80 dark:hover:bg-slate-900/80 transition-all duration-300">
+                <summary class="font-medium cursor-pointer details-summary">Education</summary>
+                <div class="mt-2 text-sm text-slate-600 dark:text-slate-300 details-content">
+                  <p>Bachelor of Science in Information Technology - Bulacan State University</p>
+                </div>
+              </details>
+              <details class="group rounded-lg border border-slate-200 dark:border-slate-800 p-4 bg-white/60 dark:bg-slate-900/60 hover:bg-white/80 dark:hover:bg-slate-900/80 transition-all duration-300">
+                <summary class="font-medium cursor-pointer details-summary">Experience</summary>
+                <div class="mt-2 text-sm text-slate-600 dark:text-slate-300 details-content">
+                  <p>Full Stack Developer at Accenture</p>
+                  <p>Frontend Developer at Previous Company</p>
+                </div>
+              </details>
+              <details class="group rounded-lg border border-slate-200 dark:border-slate-800 p-4 bg-white/60 dark:bg-slate-900/60 hover:bg-white/80 dark:hover:bg-slate-900/80 transition-all duration-300">
+                <summary class="font-medium cursor-pointer details-summary">Skills</summary>
+                <div class="mt-2 text-sm text-slate-600 dark:text-slate-300 details-content">
+                  <div class="flex flex-wrap gap-2 mt-2">
+                    <span class="skill-badge px-2 py-1 bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 rounded text-xs">HTML</span>
+                    <span class="skill-badge px-2 py-1 bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 rounded text-xs">JavaScript</span>
+                    <span class="skill-badge px-2 py-1 bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 rounded text-xs">Tailwind CSS</span>
+                    <span class="skill-badge px-2 py-1 bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 rounded text-xs">MySQL</span>
+                    <span class="skill-badge px-2 py-1 bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 rounded text-xs">PHP</span>
+                    <span class="skill-badge px-2 py-1 bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 rounded text-xs">Figma</span>
+                    <span class="skill-badge px-2 py-1 bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 rounded text-xs">Canva</span>
+                    <span class="skill-badge px-2 py-1 bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 rounded text-xs">Photoshop</span>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </section>
+        </div>
+        <div class="space-y-6">
+          <div class="content-card p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 content-section hover:scale-105 transition-all duration-300 hover:shadow-soft">
+            <h3 class="font-medium">Quick Facts</h3>
+            <ul class="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+              <li class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-accent-500 rounded-full"></span>
+                Based in Philippines
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-accent-500 rounded-full"></span>
+                IT Graduate
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-accent-500 rounded-full"></span>
+                Full Stack Developer
+              </li>
+            </ul>
+          </div>
+          <div class="content-card p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 content-section hover:scale-105 transition-all duration-300 hover:shadow-soft" style="animation-delay: 0.1s;">
+            <h3 class="font-medium">Interests</h3>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="skill-badge px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-full text-xs">Web Development</span>
+              <span class="skill-badge px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-full text-xs">UI/UX Design</span>
+              <span class="skill-badge px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-full text-xs">DevOps</span>
+              <span class="skill-badge px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-full text-xs">Gaming</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="border-t border-slate-200 dark:border-slate-800 py-10 text-center text-sm text-slate-500 animate-fade-in">
+      <p>© <span id="year"></span> Camille Santiago. Built with ❤️ by Kristian.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+      // Enhanced scroll animations for about page
+      function animateOnScroll() {
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        const contentCards = document.querySelectorAll('.content-card');
+        const skillItems = document.querySelectorAll('.skill-badge');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate');
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        elements.forEach(el => observer.observe(el));
+        
+        // Animate content cards with staggered delay
+        setTimeout(() => {
+          contentCards.forEach((card, index) => {
+            setTimeout(() => card.classList.add('animate'), index * 200);
+          });
+        }, 300);
+        
+        // Animate skill badges
+        setTimeout(() => {
+          skillItems.forEach((item, index) => {
+            setTimeout(() => item.classList.add('animate'), index * 100);
+          });
+        }, 1000);
+      }
+      
+      // Initialize animations when page loads
+      document.addEventListener('DOMContentLoaded', () => {
+        animateOnScroll();
+      });
+      
+      // Re-run animations on scroll
+      window.addEventListener('scroll', () => {
+        animateOnScroll();
+      });
+    </script>
+  </body>
+  </html>
+
+

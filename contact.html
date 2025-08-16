@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact — Camille Santiago</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              accent: {
+                50: '#fff1f4',
+                100: '#ffe4ea',
+                200: '#ffc8d4',
+                300: '#ff9fb6',
+                400: '#ff6b93',
+                500: '#f5578a',
+                600: '#df3e77',
+                700: '#ba2a62',
+                800: '#972553',
+                900: '#7d2248',
+              },
+            },
+            fontFamily: {
+              sans: ['Inter','ui-sans-serif','system-ui','Segoe UI','Roboto','Helvetica Neue','Arial','Noto Sans','sans-serif']
+            },
+            boxShadow: { soft: '0 6px 24px rgba(0,0,0,0.08)' },
+            animation: {
+              'fade-in': 'fadeIn 0.8s ease-out forwards',
+              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              'fade-in-left': 'fadeInLeft 0.8s ease-out forwards',
+              'fade-in-right': 'fadeInRight 0.8s ease-out forwards',
+              'slide-in-up': 'slideInUp 0.6s ease-out forwards',
+              'scale-in': 'scaleIn 0.6s ease-out forwards',
+              'bounce-in': 'bounceIn 0.8s ease-out forwards',
+              'float': 'float 3s ease-in-out infinite',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' }
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              fadeInLeft: {
+                '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' }
+              },
+              fadeInRight: {
+                '0%': { opacity: '0', transform: 'translateX(30px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' }
+              },
+              slideInUp: {
+                '0%': { opacity: '0', transform: 'translateY(50px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              scaleIn: {
+                '0%': { opacity: '0', transform: 'scale(0.9)' },
+                '100%': { opacity: '1', transform: 'scale(1)' }
+              },
+              bounceIn: {
+                '0%': { opacity: '0', transform: 'scale(0.3)' },
+                '50%': { opacity: '1', transform: 'scale(1.05)' },
+                '70%': { transform: 'scale(0.9)' },
+                '100%': { opacity: '1', transform: 'scale(1)' }
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-10px)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out;
+      }
+      
+      .animate-on-scroll.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .contact-card {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.6s ease-out;
+      }
+      
+      .contact-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .form-input {
+        transition: all 0.3s ease;
+      }
+      
+      .form-input:focus {
+        transform: scale(1.02);
+        box-shadow: 0 0 0 3px rgba(245, 87, 138, 0.1);
+      }
+      
+      .form-input:hover {
+        border-color: #f5578a;
+      }
+      
+      .submit-button {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .submit-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      .submit-button:hover::before {
+        left: 100%;
+      }
+      
+      .submit-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(245, 87, 138, 0.3);
+      }
+      
+      .nav-link {
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #f5578a, #df3e77);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+      
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      
+      .hero-gradient {
+        background: linear-gradient(135deg, rgba(245, 87, 138, 0.1) 0%, rgba(223, 62, 119, 0.05) 100%);
+        animation: gradientShift 8s ease-in-out infinite;
+      }
+      
+      @keyframes gradientShift {
+        0%, 100% { opacity: 0.8; }
+        50% { opacity: 1; }
+      }
+      
+      .contact-method {
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      
+      .contact-method:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      .contact-icon {
+        transition: all 0.3s ease;
+      }
+      
+      .contact-method:hover .contact-icon {
+        transform: scale(1.1) rotate(5deg);
+        color: #f5578a;
+      }
+      
+      .social-link {
+        transition: all 0.3s ease;
+      }
+      
+      .social-link:hover {
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 8px 20px rgba(245, 87, 138, 0.2);
+      }
+      
+      .floating-shapes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+      }
+      
+      .floating-shape {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      .floating-shape:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      
+      .floating-shape:nth-child(2) {
+        top: 60%;
+        right: 10%;
+        animation-delay: 2s;
+      }
+      
+      .floating-shape:nth-child(3) {
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 4s;
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100 selection:bg-accent-200/60 selection:text-slate-900">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white dark:bg-slate-900 px-3 py-2 rounded shadow animate-fade-in">Skip to content</a>
+    <header class="sticky top-0 z-40 backdrop-blur bg-white/70 dark:bg-slate-950/60 border-b border-slate-200/60 dark:border-slate-800 animate-fade-in">
+      <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+        <a href="index.html" class="font-semibold tracking-tight hover:text-accent-600 transition-colors duration-300">Camille <span class="text-accent-600">Santiago</span></a>
+        <div class="flex items-center gap-1 sm:gap-2">
+          <div class="hidden sm:flex items-center gap-1 sm:gap-2">
+            <a class="nav-link px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800" href="about.html">About</a>
+            <a class="nav-link px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800" href="projects.html">Projects</a>
+            <a class="nav-link px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800" href="blog/index.html">Blog</a>
+          </div>
+          <button id="themeToggle" aria-label="Toggle dark mode" class="ml-2 rounded p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300 hover:scale-110">
+            <span id="icon-sun" class="hidden">☀️</span>
+            <span id="icon-moon">🌙</span>
+          </button>
+          <button id="menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobileMenu" class="sm:hidden ml-1 rounded p-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300">
+            <span id="icon-menu">☰</span>
+            <span id="icon-close" class="hidden">✕</span>
+          </button>
+        </div>
+      </nav>
+      <div id="mobileMenu" class="sm:hidden hidden border-t border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-950/90 backdrop-blur animate-fade-in">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col gap-1">
+          <a class="px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300" href="about.html">About</a>
+          <a class="px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300" href="projects.html">Projects</a>
+          <a class="px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-300" href="blog/index.html">Blog</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero banner to match index aesthetics -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 -z-10">
+        <div class="absolute -inset-[30%] bg-gradient-to-br from-accent-200/40 to-transparent blur-3xl dark:from-accent-500/15 hero-gradient"></div>
+      </div>
+      <div class="floating-shapes">
+        <div class="floating-shape w-20 h-20 bg-accent-300 rounded-full"></div>
+        <div class="floating-shape w-16 h-16 bg-accent-400 rounded-lg"></div>
+        <div class="floating-shape w-24 h-24 bg-accent-200 rounded-full"></div>
+      </div>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <h1 class="text-4xl sm:text-6xl font-bold tracking-tight leading-tight animate-fade-in-up">Let's work together</h1>
+        <p class="mt-3 text-lg text-slate-600 dark:text-slate-300 animate-fade-in-up" style="animation-delay: 0.2s;">Reach out for opportunities, collaborations, or a friendly hello.</p>
+      </div>
+    </section>
+
+    <main id="main" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="grid md:grid-cols-3 gap-8 items-start">
+        <!-- Contact form card -->
+        <section class="md:col-span-2 contact-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 shadow-soft p-6">
+          <h2 class="text-xl font-semibold">Send a message</h2>
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="mt-4 space-y-4" action="contact.html">
+            <input type="hidden" name="form-name" value="contact">
+            <p class="hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
+            <div>
+              <label for="name" class="block text-sm font-medium">Name</label>
+              <input id="name" name="name" required placeholder="Your name" class="form-input mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium">Email</label>
+              <input id="email" name="email" type="email" required placeholder="you@example.com" class="form-input mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2" />
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium">Message</label>
+              <textarea id="message" name="message" rows="6" required placeholder="Tell me a bit about your project or note…" class="form-input mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2"></textarea>
+            </div>
+            <div class="flex items-center justify-between">
+              <button type="submit" class="submit-button inline-flex items-center rounded-lg bg-accent-600 text-white px-6 py-2 shadow-soft hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2 dark:focus:ring-offset-slate-900">
+                Send Message
+              </button>
+              <p class="text-xs text-slate-500">I'll get back to you within 24 hours</p>
+            </div>
+          </form>
+        </section>
+
+        <!-- Contact info sidebar -->
+        <div class="space-y-6">
+          <div class="contact-card p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 contact-method hover:scale-105 transition-all duration-300 hover:shadow-soft">
+            <div class="flex items-center gap-3">
+              <div class="contact-icon text-2xl">📧</div>
+              <div>
+                <h3 class="font-medium">Email</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300">camillesantiago170@gmail.com</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-card p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 contact-method hover:scale-105 transition-all duration-300 hover:shadow-soft" style="animation-delay: 0.1s;">
+            <div class="flex items-center gap-3">
+              <div class="contact-icon text-2xl">📍</div>
+              <div>
+                <h3 class="font-medium">Location</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300">Philippines</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-card p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 contact-method hover:scale-105 transition-all duration-300 hover:shadow-soft" style="animation-delay: 0.2s;">
+            <div class="flex items-center gap-3">
+              <div class="contact-icon text-2xl">💼</div>
+              <div>
+            <h3 class="font-medium">Availability</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300">Open to new opportunities</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-card p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 hover:scale-105 transition-all duration-300 hover:shadow-soft" style="animation-delay: 0.3s;">
+            <h3 class="font-medium mb-3">Connect</h3>
+            <div class="flex gap-3">
+              <a href="https://github.com/" class="social-link p-2 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-accent-100 dark:hover:bg-accent-900/30 transition-all duration-300" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+              <a href="https://linkedin.com/" class="social-link p-2 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-accent-100 dark:hover:bg-accent-900/30 transition-all duration-300" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="mailto:camillesantiago170@gmail.com" class="social-link p-2 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-accent-100 dark:hover:bg-accent-900/30 transition-all duration-300" aria-label="Email">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M0 3v18h24V3H0zm21.518 2L12 12.713 2.482 5h19.036zM2 19V7l10 7.5L22 7v12H2z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Additional contact section -->
+      <section class="mt-16 animate-on-scroll">
+        <div class="text-center">
+          <h2 class="text-2xl font-semibold mb-4">Let's start a conversation</h2>
+          <p class="text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
+            Whether you have a project in mind, want to discuss collaboration opportunities, or just want to say hello, I'd love to hear from you. I'm always open to new challenges and interesting conversations.
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="mailto:camillesantiago170@gmail.com" class="submit-button inline-flex items-center rounded-lg bg-accent-600 text-white px-6 py-3 shadow-soft hover:bg-accent-700 transition-all duration-300">
+              Send Email
+            </a>
+            <a href="projects.html" class="submit-button inline-flex items-center rounded-lg border border-slate-300 dark:border-slate-700 px-6 py-3 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-300">
+              View Projects
+            </a>
+          </div>
+      </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-slate-200 dark:border-slate-800 py-10 text-center text-sm text-slate-500 animate-fade-in">
+        <p>© <span id="year"></span> Camille Santiago. Built with ❤️ by Kristian.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+      // Enhanced scroll animations for contact page
+      function animateOnScroll() {
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        const contactCards = document.querySelectorAll('.contact-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate');
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        elements.forEach(el => observer.observe(el));
+        
+        // Animate contact cards with staggered delay
+        setTimeout(() => {
+          contactCards.forEach((card, index) => {
+            setTimeout(() => card.classList.add('animate'), index * 200);
+          });
+        }, 300);
+      }
+      
+      // Initialize animations when page loads
+      document.addEventListener('DOMContentLoaded', () => {
+        animateOnScroll();
+      });
+      
+      // Re-run animations on scroll
+      window.addEventListener('scroll', () => {
+        animateOnScroll();
+      });
+      
+      // Form submission enhancement
+      const form = document.querySelector('form[name="contact"]');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          const submitButton = form.querySelector('button[type="submit"]');
+          if (submitButton) {
+            submitButton.innerHTML = 'Sending...';
+            submitButton.disabled = true;
+            
+            // Simulate form submission (remove this in production)
+            setTimeout(() => {
+              submitButton.innerHTML = 'Message Sent!';
+              submitButton.classList.add('bg-green-600');
+              
+              // Reset form
+              setTimeout(() => {
+                form.reset();
+                submitButton.innerHTML = 'Send Message';
+                submitButton.disabled = false;
+                submitButton.classList.remove('bg-green-600');
+              }, 2000);
+            }, 1000);
+          }
+        });
+      }
+    </script>
+  </body>
+  </html>
+
+

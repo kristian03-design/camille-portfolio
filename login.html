@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign In — Camille Santiago</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              accent: {
+                50: '#fff1f4',
+                100: '#ffe4ea',
+                200: '#ffc8d4',
+                300: '#ff9fb6',
+                400: '#ff6b93',
+                500: '#f5578a',
+                600: '#df3e77',
+                700: '#ba2a62',
+                800: '#972553',
+                900: '#7d2248',
+              },
+            },
+            fontFamily: {
+              sans: ['Inter','ui-sans-serif','system-ui','Segoe UI','Roboto','Helvetica Neue','Arial','Noto Sans','sans-serif']
+            },
+            boxShadow: { soft: '0 6px 24px rgba(0,0,0,0.08)' }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="font-sans bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100 selection:bg-accent-200/60 selection:text-slate-900 min-h-screen flex items-center justify-center">
+    <main class="w-full max-w-md p-6">
+      <div class="relative overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 shadow-soft p-6">
+        <div class="absolute inset-0 -z-10 pointer-events-none">
+          <div class="absolute -inset-[40%] bg-gradient-to-br from-accent-200/40 to-transparent blur-3xl dark:from-accent-500/15"></div>
+        </div>
+        <h1 class="text-2xl font-semibold">Sign in</h1>
+        <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Access the private page and portfolio gate.</p>
+        <form id="loginForm" class="mt-6 space-y-4" novalidate>
+          <div>
+            <label for="email" class="block text-sm font-medium">Email</label>
+            <input id="email" type="email" autocomplete="username" class="mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2" placeholder="you@example.com" />
+          </div>
+          <div>
+            <label for="password" class="block text-sm font-medium">Password</label>
+            <input id="password" type="password" autocomplete="current-password" class="mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2" placeholder="••••••" required />
+          </div>
+          <button class="w-full inline-flex items-center justify-center rounded-lg bg-accent-600 text-white px-4 py-2 shadow-soft hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2 dark:focus:ring-offset-slate-900">Sign in</button>
+          <p id="status" class="text-sm text-slate-600 dark:text-slate-300" role="status"></p>
+        </form>
+        <p class="mt-6 text-xs text-slate-500">Note: This is a simple client-side gate for a static site. Do not use for sensitive data.</p>
+      </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script>
+      const form = document.getElementById('loginForm');
+      const status = document.getElementById('status');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.textContent = 'Checking…';
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const ok = await window.Auth.login({ email, password });
+        if (ok) {
+          status.textContent = 'Success! Redirecting…';
+          const urlParams = new URLSearchParams(window.location.search);
+          const redirectTo = urlParams.get('next') || 'private.html';
+          window.location.href = redirectTo;
+        } else {
+          status.textContent = 'Invalid credentials';
+        }
+      });
+    </script>
+  </body>
+  </html>
+
+
