@@ -1,0 +1,13 @@
+{
+  "name": "camille-santiago",
+  "version": "1.0.0",
+  "description": "Camille Santiago's personal website",
+  "main": "index.html",
+  "scripts": {
+    "start": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+}

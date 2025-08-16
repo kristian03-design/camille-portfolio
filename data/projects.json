@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Portfolio Site",
+    "description": "This site — clean UI, dark mode, blog, and private page.",
+    "image": "assets/gallery/1.jpg",
+    "tags": ["HTML", "Tailwind CSS", "JavaScript"],
+    "liveUrl": "#",
+    "repoUrl": "#",
+    "featured": true
+  },
+  {
+    "title": "Expenses Tracker",
+    "description": "Track daily expenses, visualize spending, and manage budgets with a simple, intuitive interface.",
+    "image": "assets/gallery/1.jpg",
+    "tags": ["HTML", "JavaScript", "Tailwind CSS", "MySQL", "PHP"],
+    "liveUrl": "#",
+    "repoUrl": "#"
+  }
+  
+]
